@@ -3,31 +3,22 @@
 # run the application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-#
+# 
 #    http://shiny.rstudio.com/
 #
 
 library(shiny)
+library(shinydashboard)
+library(rmarkdown)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
+shinyUI(
+    fluidRow(
+        # THE UI
+        tags$html(
+            tags$body(        
+                singleton(tags$head(tags$script(src = "p5.min.js")))
+                ,singleton(tags$head(tags$script(src = "sketch1.js")))
+                ,singleton(tags$div(id = 'divCanvas', style = 'width:auto; height:auto'))
+            ))
     )
-))
+)
